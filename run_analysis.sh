@@ -1,7 +1,7 @@
 #==============================================
 # Unzip 
 #==============================================
-gzip -dc ${oldR1Name} > ${newR1Name}.fastq
+#gzip -dc ${oldR1Name} > ${newR1Name}.fastq
 
 
 #==============================================
@@ -9,21 +9,13 @@ gzip -dc ${oldR1Name} > ${newR1Name}.fastq
 #==============================================
 
 
-java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 \
-G04868_1.fastq \ 
-G04868_2.fastq  \ 
-G04868_1_trimmed_paired.fastq \
-G04868_1_trimmed_unpaired.fastq \
-G04868_2_trimmed_paired.fastq  \ 
-G04868_2_trimmed_unpaired.fastq  \
-LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
-
+java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33  23_R1.fastq  23_R2.fastq   23_R1_p.fastq  23_R1_s.fastq  23_R2_p.fastq   23_R2_s.fastq   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36 
 
 #==============================================
 # Snippy
 #==============================================
 
- snippy --cpus 4 --outdir G04868 --ref ./ NC000962_3 . gbk-- R1./G04868_1.fastq.gz --R2 ./ G04868_2 . fastq.gz
+# snippy --cpus 4 --outdir G04868 --ref ./ NC000962_3 . gbk-- R1./G04868_1.fastq.gz --R2 ./ G04868_2 . fastq.gz
 
 
 #==============================================
