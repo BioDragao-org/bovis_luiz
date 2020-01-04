@@ -14,8 +14,12 @@
 #==============================================
 # Snippy
 #==============================================
+#DONE
 
-# snippy --cpus 4 --outdir G04868 --ref ./ NC000962_3 . gbk-- R1./G04868_1.fastq.gz --R2 ./ G04868_2 . fastq.gz
+#gzip -dc 23_R1.fastq.gz > 23_R1.fastq 
+#gzip -dc 23_R2.fastq.gz > 23_R2.fastq 
+#snippy --cpus 4 --outdir 23 --ref ./NC000962_3.gbk --R1 ./23_R1.fastq.gz --R2 ./23_R2.fastq.gz
+
 
 
 #==============================================
@@ -36,6 +40,7 @@
 # https://github.com/BioDragao-org/tese-nf/blob/master/_resources/G04868_scratch/G04868_vm.nf
 #==============================================
 
+# TODO
 
 ## cd ./ G04868_49 && prokka-- outdir./G04868_prokka --prefix G04868 contigs.fa_NC000962_3.fasta.fasta
 
@@ -44,14 +49,25 @@
 # RD_Analyzer
 #==============================================
 
+python2.7 rdanalyzer.py -o  23_rdanalyzer 23_R1.fastq
+
+
+
 #==============================================
 # Spotyping
 #==============================================
-
+#DONE
 
 #gzip -dc 23_R1.fastq.gz > 23_R1.fastq 
 #gzip -dc 23_R2.fastq.gz > 23_R2.fastq 
-gzip -dc 23_R1_p.fastq.gz > 23_R1_p.fastq
+#gzip -dc 23_R1_p.fastq.gz > 23_R1_p.fastq
 
-python2.7 SpoTyping.py ./23_R1_p.fastq -o 23.txt
+#python2.7 SpoTyping.py ./23_R1_p.fastq -o 23.txt
+
+#==============================================
+# SPADES
+#https://github.com/rrwick/Unicycler/issues/152
+#==============================================
+# TODO
+#spades.py -k 21,33,55,77 --careful --only-assembler --pe1-1 23_R1_p.fastq --pe1-2 23_R2_p.fastq -o 23_spades
 
