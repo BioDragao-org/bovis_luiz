@@ -7,9 +7,9 @@
 #==============================================
 # Trimmomatic
 #==============================================
+# DONE
 
-
-java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33  23_R1.fastq  23_R2.fastq   23_R1_p.fastq  23_R1_s.fastq  23_R2_p.fastq   23_R2_s.fastq   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36 
+#java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33  23_R1.fastq  23_R2.fastq   23_R1_p.fastq  23_R1_s.fastq  23_R2_p.fastq   23_R2_s.fastq   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36 
 
 #==============================================
 # Snippy
@@ -21,6 +21,12 @@ java -jar /opt/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33  23_R1.fastq  2
 #==============================================
 # TB_Profiler
 #==============================================
+
+
+gzip 23_R1_p.fastq 
+gzip 23_R2_p.fastq
+#tb-profiler profile -1 23_R1.p.fastq.gz -2 23_R2.p.fastq.gz -t 4 -p 23
+
 
 #==============================================
 # Prokka
