@@ -1,0 +1,437 @@
+    1  ls
+    2  sudo
+    3  apt update
+    4  sudo apt-add-repository ppa:fish-shell/release-3
+    5  sudo apt-get update
+    6  sudo apt install fish
+    7  fish
+    8  exit
+    9  for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master `; do    git branch --track ${branch#remotes/origin/} $branch; done
+   10  git checkout biodragon_ubuntu
+   11  chezmoi apply
+   12  ls
+   13  cd
+   14  ls
+   15  vim setupVagrantBox.sh 
+   16  vim initialSetup.sh 
+   17  ls
+   18  ls -la
+   19  vim .bashrc 
+   20  bash
+   21  vim ~/.bashrc 
+   22  exit
+   23  curl https://pyenv.run | bash
+   24  rm -rf .pyenv/
+   25  curl https://pyenv.run | bash
+   26  vim ~/.bash
+   27  vim ~/.bashrc 
+   28  ls
+   29  pyenv install miniconda3-latest
+   30  exit
+   31  pyenv install miniconda3-latest
+   32  pyenv global miniconda3-latest
+   33  exit
+   34  vim ~/.bashrc 
+   35  exit
+   36  git status
+   37  git add .
+   38  git commit -m "add the uopeople onedrive"
+   39  git push -u origin master
+   40  git branch
+   41  git push -u origin biodragon_ubuntu
+   42  exit
+   43  conda --version
+   44  conda config --add channels defaults
+   45  conda config --add channels bioconda
+   46  conda config --add channels conda-forge
+   47  conda install -c bioconda tb-profiler
+   48  ls
+   49  mkdir test_tb_profiler
+   50  cd test_tb_profiler/
+   51  vim test.sh
+   52  bash test.sh 
+   53  vim test.sh 
+   54  bash test.sh 
+   55  ls
+   56  cd results/
+   57  ls
+   58  fish
+   59  exit
+   60  fish
+   61  exit
+   62  ls
+   63  git config --global core.editor "vim"
+   64  fish
+   65  chezmoi cd 
+   66  bash
+   67  ls
+   68  bash setupVagrantBox.sh 
+   69  vagrant ssh
+   70  vagrant global-status
+   71  cd /biodragon/vagrantBox/
+   72  ls
+   73  vagrant ssh
+   74  vim Vagrantfile 
+   75  vagrant halt
+   76  vagrant upp
+   77  vagrant up
+   78  ls
+   79  vagrant ssh
+   80  ls
+   81  vagrant halt
+   82  vagrant up
+   83  vagrant ssh
+   84  vim Vagrantfile 
+   85  vagrant halt
+   86  vagrant up
+   87  vagrant ssh
+   88  cd ~/.ssh/
+   89  ls
+   90  ls > delete_keys.sh
+   91  vim delete_keys.sh 
+   92  bash delete_keys.sh 
+   93  ls
+   94  cd
+   95  cd /biodragon/vagrantBox/
+   96  ls
+   97  vagrant ssh
+   98  vagrant halt
+   99  vagrant up
+  100  vagrant ssh
+  101  vim ~/.ssh/config
+  102  vim ~/.ssh/config.bak 
+  103  ls
+  104  cd ~/.ssh/
+  105  ls
+  106  vim config
+  107  rm -rf config.bak 
+  108  vim config 
+  109  cd
+  110  shutdown -h now
+  111  ls
+  112  git status
+  113  exit
+  114  ls
+  115  git status
+  116  chezmoi add ~/.ssh/*
+  117  git status
+  118  git add .
+  119  git status
+  120  git add .
+  121  git commit -m "update sshe config wrt vagrant box"
+  122  git brnach
+  123  git branch
+  124  git push origin biodragon_ubuntu
+  125  exit
+  126  cd /biodragon/vagrantBox/
+  127  vagrant up
+  128  vagrant ssh
+  129  cd ~/.ssh/
+  130  ls
+  131  rm -rf delete_keys.sh 
+  132  chezmoi add .
+  133  chezmoi cd
+  134  chezmoi add .
+  135  chezmoi cd
+  136  cd
+  137  cd /biodragon/vagrantBox/
+  138  vagrant ssh
+  139  chezmoi cd
+  140  exit
+  141  git status
+  142  git add .
+  143  git commit -m "update rclone conf"
+  144  git branch
+  145  git push biodragon_ubuntu mastaer
+  146  git push origin biodragon_ubuntu 
+  147  cd
+  148  exit
+  149  fish
+  150  exit
+  151  rclone lsd onedrive-abhi:
+  152  rclone listremotes
+  153  rclone config
+  154  rclone lsd onedrive-abhi:
+  155  rclone listeremotes
+  156  rclone listremotes
+  157  rclone onedrive-em:
+  158  rclone lsd onedrive-em:
+  159  rclone listremotes
+  160  rclone config
+  161  chezmoi add .config/rclone/rclone.conf 
+  162  chezmoi cd
+  163  cd /biodragon/vagrantBox
+  164  ls
+  165  mkdir lab
+  166  cd lab/
+  167  rclone lsd onedrive-abhi:
+  168  rclone copy onedrive-abhi:1_tbprofiler_analysis_Carol .
+  169  rclone copy onedrive-abhi:1_tbprofiler_analysis_Carol . -vv
+  170  ls
+  171  cd bcg_carol/
+  172  ls
+  173  cd results/
+  174  ls
+  175  cd ..
+  176  ls
+  177  fish
+  178  ls
+  179  cd results/
+  180  ls
+  181  vim 10BCG.results.json 
+  182  cd ..
+  183  ls
+  184  vim run_tb_profiler.sh 
+  185  ls
+  186  ls results/
+  187  ls
+  188  ls bam/
+  189  ls vcf/
+  190  exit
+  191  ls
+  192  vim ~/.bashrc 
+  193  exit
+  194  conda install nextflow
+  195  fish
+  196  ls
+  197  bash
+  198  shutdown -r now
+  199  ls
+  200  history
+  201  conda uninstall nextflow
+  202  vim ~/.bashrc
+  203  exit
+  204  fish
+  205  exit
+  206  ls
+  207  rm -rf .pyenv/
+  208  vim .bashrc 
+  209  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  210  bash ./Miniconda3-latest-Linux-x86_64.sh 
+  211  rm -rf Miniconda3-latest-Linux-x86_64.sh 
+  212  conda install nextflow
+  213  exit
+  214  fish
+  215  exit
+  216  fish
+  217  exit
+  218  ls
+  219  exit
+  220  conda install nextflow
+  221  conda install -c bioconda tb-profiler
+  222  conda install -c bioconda tb-profiler nextflow
+  223  ls
+  224  fish
+  225  conda activate env py2
+  226  conda activate py2
+  227  ls
+  228  cd /biodragon/vagrantBox/lab/bcg_carol/
+  229  ls
+  230  df -h
+  231  ls
+  232  git status
+  233  git add rdanalyzer.py 
+  234  git add run_spotyping.sh 
+  235  git commit -m "routine commit"
+  236  git status
+  237  ls
+  238  vim run_spotyping.sh 
+  239  bash run_spotyping.sh 
+  240  ls
+  241  rm *.0
+  242  ls
+  243  bash run_rdanalyzer.sh 
+  244  ls
+  245  vim run_spotyping.sh 
+  246  rm -rf 10BCG.txt.SpoTyping.tmp.0.blast.out 10BCG.depth 10BCG.result 
+  247  ls
+  248  ls > before_spotyping.txt
+  249  vim run_spotyping.sh 
+  250  ls
+  251  vim run_spotyping.sh 
+  252  ls
+  253  git status
+  254  git add rdanalyzer_original.py before_spotyping.txt 
+  255  git commit -m "commencing with spotyping"
+  256  ls
+  257  conda deactivate py2
+  258  exit
+  259  ls
+  260  cd /biodragon/vagrantBox/lab/
+  261  ls
+  262  cd bcg_carol/
+  263  ls
+  264  cd ..
+  265  rclone copy onedrive-em:ncbi_blast_2.9.0_x64_linux.tar.gz ./
+  266  ls
+  267  tar -xvzf ncbi_blast_2.9.0_x64_linux.tar.gz 
+  268  df -h
+  269  ls
+  270  rm -rf ncbi-blast-2.9*
+  271  ls
+  272  rm ncbi_blast_2.9.0_x64_linux.tar.gz 
+  273  ls
+  274  cd bcg_carol/
+  275  ls
+  276  ls -la
+  277  ls -lah
+  278  ls
+  279  fish
+  280  exit
+  281  ls
+  282  cd /biodragon/vagrantBox/lab/bcg_carol/.
+  283  ls
+  284  rclone lsd onedrive-abhi:
+  285  rclone copy onedrive-abhi:1_tbprofiler_analysis_Carol .
+  286  rclone copy onedrive-abhi:1_tbprofiler_analysis_Carol . -v
+  287  ls
+  288  mv  Moreau_1.p.fq.gz  Moreau_1.p.fastq.gz
+  289  mv  Moreau_2.p.fq.gz  Moreau_2.p.fastq.gz
+  290  ls
+  291  fish
+  292  vagrant up
+  293  vagrant ssh
+  294  fish
+  295  vagrant ssh
+  296  ls
+  297  exit
+  298  pwsh
+  299  exit
+  300  fish
+  301  exit
+  302  ls
+  303  fish
+  304  cd /biodragon/vagrantBox/lab/bcg_carol/
+  305  ls
+  306  vim run_rdanalyzer.sh 
+  307  rm 6BCG.sam
+  308  vim run_rdanalyzer.sh 
+  309  vim 61BCG.depth 
+  310  vim 61BCG.result 
+  311  ls
+  312  vagrant ssh
+  313  ls
+  314  df -h
+  315  vagrant up
+  316  vagrant ssh
+  317  ls
+  318  tree
+  319  apt install tree
+  320  ls
+  321  ls *sh > to_pwsh.ps1
+  322  vim to_pwsh.ps1 
+  323  rm to_pwsh.ps1 
+  324  vim test.sh
+  325  chmod +x test.sh 
+  326  ./test.sh 
+  327  vim test.sh 
+  328  rm test.sh 
+  329  mv upload_rdanalyzer_results.ps1 upload_rdanalyzer_results.sh
+  330  vim upload_spotyping_results.sh 
+  331  vim upload_rdanalyzer_results.sh 
+  332  vim upload_tbprofiler_results.sh 
+  333  vim upload_rdanalyzer_results.sh 
+  334  vim upload_tbprofiler_results.sh 
+  335  git status
+  336  vim test.s
+  337  bash test.s 
+  338  rm test.s 
+  339  git status
+  340  git commit -m "add a header for powershell"
+  341  git push 
+  342  ls
+  343  exit
+  344  pwsh
+  345  ls
+  346  gci
+  347  pwsh
+  348  exit
+  349  fish
+  350  exit
+  351  ls
+  352  fish
+  353  exit
+  354  cd /biodragon/vagrantBox/
+  355  ls
+  356  cd lab/
+  357  ls
+  358  mv bovisluiz bois_luiz
+  359  ls
+  360  cd /biodragon/
+  361  ls
+  362  cd vagrantBox/
+  363  ls
+  364  cd lab/
+  365  ls
+  366  mv bois_luiz/ bovis_luiz
+  367  cd bovis_luiz/
+  368  git init
+  369  git remote add origin https://github.com/BioDragao-org/bovis_luiz
+  370  ls
+  371  vim TODO.sh
+  372  mv TODO.sh run_analysis.sh
+  373  vim run_analysis.sh 
+  374  ls
+  375  ls
+  376  cd /biodragon/vagrantBox/
+  377  ls
+  378  cd lab
+  379  ls
+  380  cd maf_tb_profiler/
+  381  ls
+  382  cd ..
+  383  ls
+  384  mkdir bovisluiz
+  385  ls
+  386  clear
+  387  ls
+  388  cd maf_tb_profiler/
+  389  ls
+  390  df -h
+  391  ls
+  392  cd ..
+  393  ls
+  394  rm -rf maf_tb_profiler/ bcg_carol/
+  395  df -h
+  396  ls
+  397  cd bovis_luiz/
+  398  ls
+  399  git clone https://github.com/BioDragao-org/run_rdanalyzer
+  400  vim run_analysis.sh 
+  401  ls
+  402  vagrant ssh
+  403  cd ..
+  404  ls
+  405  vangrant up
+  406  vagrant up
+  407  ls
+  408  cd lab
+  409  ls
+  410  clear
+  411  vagrant ssh
+  412  cd /biodragon/vagrantBox/
+  413  cd lab/
+  414  conda install spades -c bioconda
+  415  ls
+  416  cd bovis_luiz/
+  417  ls
+  418  vim run_analysis.sh 
+  419  ls -la
+  420  rm .run_analysis.sh.swp 
+  421  vim run_analysis.sh 
+  422  bash run_analysis.sh 
+  423  vim run_analysis.sh 
+  424  bash run_analysis.sh 
+  425  ls
+  426  gzip -dc 23_R2_p.fastq.gz > 23_R2_p.fastq
+  427  bash run_analysis.sh 
+  428  vim run_analysis.sh 
+  429  git add run_analysis.sh 
+  430  git commit -m "checkpoint: spades fails "
+  431  git push
+  432  la
+  433  ls
+  434  cd dropbox/
+  435  ls
+  436  cd ..
+  437  history > history.txt
