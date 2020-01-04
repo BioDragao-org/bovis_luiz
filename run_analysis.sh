@@ -21,12 +21,12 @@
 #==============================================
 # TB_Profiler
 #==============================================
+# DONE
 
+#gzip 23_R1.fastq 
+#gzip 23_R2.fastq
 
-gzip 23_R1.fastq 
-gzip 23_R2.fastq
-
-tb-profiler profile -1 23_R1.fastq.gz -2 23_R2.fastq.gz -t 4 -p 23
+#tb-profiler profile -1 23_R1.fastq.gz -2 23_R2.fastq.gz -t 4 -p 23
 
 
 #==============================================
@@ -48,4 +48,10 @@ tb-profiler profile -1 23_R1.fastq.gz -2 23_R2.fastq.gz -t 4 -p 23
 # Spotyping
 #==============================================
 
+
+#gzip -dc 23_R1.fastq.gz > 23_R1.fastq 
+#gzip -dc 23_R2.fastq.gz > 23_R2.fastq 
+gzip -dc 23_R1_p.fastq.gz > 23_R1_p.fastq
+
+python2.7 SpoTyping.py ./23_R1_p.fastq -o 23.txt
 
