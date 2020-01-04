@@ -23,9 +23,10 @@
 #==============================================
 
 
-gzip 23_R1_p.fastq 
-gzip 23_R2_p.fastq
-#tb-profiler profile -1 23_R1.p.fastq.gz -2 23_R2.p.fastq.gz -t 4 -p 23
+gzip 23_R1.fastq 
+gzip 23_R2.fastq
+
+tb-profiler profile -1 23_R1.fastq.gz -2 23_R2.fastq.gz -t 4 -p 23
 
 
 #==============================================
