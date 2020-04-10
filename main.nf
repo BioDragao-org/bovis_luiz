@@ -30,9 +30,10 @@ process gzip {
     input:
     tuple (genomeName, path(read_1_gz), path(read_2_gz)) from ch_fastqGz
 
-
     output:
     tuple genomeName, path(genome_1_fq), path(genome_2_fq) into ch_trimmomatic
+    tuple genomeName, path(genome_1_fq), path(genome_2_fq) into ch_in_rdAnalyzer
+    tuple genomeName, path(genome_1_fq), path(genome_2_fq) into ch_in_spades
 
     script:
     genome_1_fq = read_1_gz.name.split("\\.")[0] + '.fastq'
@@ -59,6 +60,9 @@ process trimmomatic {
 
     input:
     tuple genomeName, path(fq_1), path(fq_2) from ch_trimmomatic
+
+    output: 
+    tuple genomeName, path(fq_1_paired) into ch_in_spotyping
 
     script:
     fq_1_paired = genomeName + '_1_paired.fastq'
@@ -122,9 +126,9 @@ process tbProfiler {
     """
 }
 
-
 ///*
 //###############
+// TODO 
 //prokka_annotation
 //###############
 //*/
@@ -152,59 +156,68 @@ process tbProfiler {
 //    prokka --outdir ./${genomeName}_prokka --prefix $genomeName $contigName
 //    """
 //}
-//
-//#==============================================
-//# RD_Analyzer
-//#==============================================
-//
-//
-//process rdAnalyzer {
-////    echo true
-//
-//    input:
-//    path refFasta from ch_refFasta
-//    path bestContig from ch_bestContig
-//    tuple path(fq_1), path(fq_2) from ch_fastq
-//
-//    script:
-//    genomeName = bestContig.getName().split("\\_")[0]
-//    contigName = bestContig + "_NC000962_3.fasta.fasta"
-//
-//
-////python2.7 rdanalyzer.py -o  23_rdanalyzer 23_R1.fastq
-//    """
-//    rdanalyzer --o ./${genomeName}_rdanalyzer --prefix $genomeName $contigName
-//
-//    """
-//}
-//
-//
-//
-////###############
-//// Spotyping
-////###############
-//
-//process spotyping {
-////    echo true
-//
-//    input:
-//    path refFasta from ch_refFasta
-//    path bestContig from ch_bestContig
-//
-//    script:
-//    genomeName = bestContig.getName().split("\\_")[0]
-//    contigName = bestContig + "_NC000962_3.fasta.fasta"
-//
-//    """
-//    python2.7 SpoTyping.py ./${fq_1_paired} -o {genomeName}.txt
-//    """
-//}
-//
-//
-//
-////###############
-//// Spades
-////###############
-//
-//#spades.py -k 21,33,55,77 --careful --only-assembler --pe1-1 23_R1_p.fastq --pe1-2 23_R2_p.fastq -o 23_spades
-//
+/*
+#==============================================
+# RD_Analyzer
+#==============================================
+*/
+
+process rdAnalyzer {
+    echo true
+    container 'abhi18av/rdanalyzer'
+
+    input:
+    tuple genomeName, path(fq_1), path(fq_2) from ch_in_rdAnalyzer
+
+    script:
+
+    """
+    python  /RD-Analyzer/RD-Analyzer.py  -o ./${genomeName}_rdanalyzer ${fq_1} ${fq_2}
+
+    """
+}
+
+
+
+//###############
+// Spotyping
+//###############
+
+process spotyping {
+    echo true
+    container 'abhi18av/spotyping'
+
+    input:
+    tuple genomeName, path(fq_1_paired) from ch_in_spotyping
+
+    script:
+
+    """
+    python /SpoTyping-v2.0/SpoTyping-v2.0-commandLine/SpoTyping.py ./${fq_1_paired} -o ${genomeName}.txt
+    """
+}
+
+
+/*
+###############
+Spades
+###############
+*/
+
+process spades {
+    echo true
+    container 'quay.io/biocontainers/spades:3.14.0--h2d02072_0'
+
+    input:
+    tuple genomeName, path(fq_1), path(fq_2) from ch_in_spades
+
+    script:
+
+    """
+    spades.py -k 21,33,55,77 --careful --only-assembler --pe1-1 ${fq_1} --pe1-2 ${fq_2} -o ${genomeName}_spades
+
+    """
+}
+
+
+
