@@ -24,7 +24,6 @@ gzip these files
 
 
 process gzip {
-//    echo true
     container 'centos:8'
 
     input:
@@ -54,7 +53,6 @@ trimmomatic
 
 
 process trimmomatic {
-//    echo true
     container 'quay.io/biocontainers/trimmomatic:0.35--6'
 
 
@@ -126,6 +124,75 @@ process tbProfiler {
     """
 }
 
+/*
+#==============================================
+# RD_Analyzer
+#==============================================
+*/
+
+process rdAnalyzer {
+    container 'abhi18av/rdanalyzer'
+
+    input:
+    tuple genomeName, path(fq_1), path(fq_2) from ch_in_rdAnalyzer
+
+    script:
+
+    """
+    python  /RD-Analyzer/RD-Analyzer.py  -o ./${genomeName}_rdanalyzer ${fq_1} ${fq_2}
+
+    """
+}
+
+
+/*
+###############
+Spotyping
+###############
+*/
+
+
+
+process spotyping {
+    container 'abhi18av/spotyping'
+
+    input:
+    tuple genomeName, path(fq_1_paired) from ch_in_spotyping
+
+    script:
+
+    """
+    python /SpoTyping-v2.0/SpoTyping-v2.0-commandLine/SpoTyping.py ./${fq_1_paired} -o ${genomeName}.txt
+    """
+}
+
+
+/*
+###############
+Spades
+- Run on cloud
+- Extremely RAM heavy
+###############
+*/
+
+process spades {
+    container 'quay.io/biocontainers/spades:3.14.0--h2d02072_0'
+
+    input:
+    tuple genomeName, path(fq_1), path(fq_2) from ch_in_spades
+
+    script:
+
+
+    """
+    spades.py -k 21,33,55,77 --careful --only-assembler --pe1-1 ${fq_1} --pe1-2 ${fq_2} -o ${genomeName}_spades -t 2
+
+    """
+}
+
+
+
+
 ///*
 //###############
 // TODO 
@@ -138,7 +205,6 @@ process tbProfiler {
 ////https://github.com/tseemann/prokka/issues/303
 //
 //process prokka {
-////    echo true
 //
 //    container 'quay.io/biocontainers/prokka:1.14.6--pl526_0'
 //
@@ -156,68 +222,3 @@ process tbProfiler {
 //    prokka --outdir ./${genomeName}_prokka --prefix $genomeName $contigName
 //    """
 //}
-/*
-#==============================================
-# RD_Analyzer
-#==============================================
-*/
-
-process rdAnalyzer {
-    echo true
-    container 'abhi18av/rdanalyzer'
-
-    input:
-    tuple genomeName, path(fq_1), path(fq_2) from ch_in_rdAnalyzer
-
-    script:
-
-    """
-    python  /RD-Analyzer/RD-Analyzer.py  -o ./${genomeName}_rdanalyzer ${fq_1} ${fq_2}
-
-    """
-}
-
-
-
-//###############
-// Spotyping
-//###############
-
-process spotyping {
-    echo true
-    container 'abhi18av/spotyping'
-
-    input:
-    tuple genomeName, path(fq_1_paired) from ch_in_spotyping
-
-    script:
-
-    """
-    python /SpoTyping-v2.0/SpoTyping-v2.0-commandLine/SpoTyping.py ./${fq_1_paired} -o ${genomeName}.txt
-    """
-}
-
-
-/*
-###############
-Spades
-###############
-*/
-
-process spades {
-    echo true
-    container 'quay.io/biocontainers/spades:3.14.0--h2d02072_0'
-
-    input:
-    tuple genomeName, path(fq_1), path(fq_2) from ch_in_spades
-
-    script:
-
-    """
-    spades.py -k 21,33,55,77 --careful --only-assembler --pe1-1 ${fq_1} --pe1-2 ${fq_2} -o ${genomeName}_spades
-
-    """
-}
-
-
-
